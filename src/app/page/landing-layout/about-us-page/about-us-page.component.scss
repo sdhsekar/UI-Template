@@ -1,0 +1,111 @@
+@use '../../../../styles/util/util';
+
+.employees-wrapper {
+  & > * {
+    margin-top: 100px;
+  }
+
+  & hr {
+    margin: 0;
+    flex-basis: 100%;
+    visibility: hidden;
+  }
+}
+
+.timeline-wrapper, .websites-wrapper {
+  @include util.flex-center-center;
+
+  flex-wrap: wrap;
+}
+
+.timeline-wrapper {
+  & .timeline-hr {
+    border-left: 1px solid var(--contrast);
+    border-right: none;
+  }
+}
+
+@media only screen and (max-width: 999px) {
+  .employees-wrapper {
+    @include util.flex-layout-column;
+    @include util.flex-center-center;
+
+    justify-content: space-evenly;
+
+    width: 100vw;
+
+    margin-bottom: 20px;
+
+    & > * {
+      width: 94vw;
+    }
+  }
+
+  .timeline-wrapper, .websites-wrapper {
+    @include util.flex-layout-column;
+    padding: 0 3vw;
+  }
+
+  .websites-wrapper {
+    & > * {
+      width: 94vw;
+      margin: 10px 0;
+    }
+  }
+
+  .timeline-wrapper {
+    & .timeline-hr {
+      height: 120px;
+    }
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+
+  .employees-wrapper {
+    @include util.flex-layout-row;
+
+    justify-content: center;
+    flex-wrap: wrap;
+
+    width: 100%;
+
+    margin-bottom: 50px;
+
+    & > * {
+      width: 300px;
+      margin: {
+        left: 40px;
+        right: 40px;
+      }
+    }
+  }
+
+  .timeline-wrapper, .websites-wrapper {
+    @include util.flex-layout-row;
+    @include util.margin-x-auto;
+
+    width: 1000px;
+
+    & > * {
+      width: 40%;
+      margin: 10px 41px;
+    }
+
+    & .right {
+      margin: 150px 41px 0;
+    }
+  }
+
+  .timeline-wrapper {
+    & .timeline-hr {
+      height: 700px;
+      width: 0;
+      margin: 0;
+
+      &.right {
+        display: none;
+      }
+    }
+  }
+}
