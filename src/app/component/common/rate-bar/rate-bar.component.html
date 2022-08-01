@@ -1,0 +1,8 @@
+<div class="rate-wrapper" *ngIf="formattedRateNumber">
+  <label *ngFor="let number of [1,2,3,4,5]"
+         [class.rate-full]="value >= number"
+         [class.rate-half]="value === number - 0.5" class="far fa-sm fa-star rate"
+         [style.color]="'var(--theme-color-lighter-' + number + ')'">
+  </label>
+  <p class="dim" style="margin-left: 5px; margin-top: 5px;">{{ formattedRateNumber }}</p>
+</div>

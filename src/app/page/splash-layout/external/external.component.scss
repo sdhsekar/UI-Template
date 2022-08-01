@@ -1,0 +1,20 @@
+@use '../splash-layout.component';
+
+@media only screen and (max-width: 999px) {
+  .splash-content {
+    margin-top: 18vh;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .splash-content {
+    margin-top: 30vh;
+  }
+
+  .external-component-button-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+}

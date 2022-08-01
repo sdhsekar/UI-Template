@@ -1,0 +1,32 @@
+<swiper
+    [slidesPerView]="1"
+    [spaceBetween]="10"
+    [loop]="true"
+    [autoplay]="{
+      delay: 2500,
+      disableOnInteraction: false
+    }"
+    [loopFillGroupWithBlank]="true"
+    [pagination]="{
+      clickable: true
+    }"
+    [navigation]="true"
+    [breakpoints]="{
+      '640': {
+        slidesPerView: 1,
+        spaceBetween: 30
+      },
+      '768': {
+        slidesPerView: 2,
+        spaceBetween: 40
+      },
+      '1200': {
+        slidesPerView: 4,
+        spaceBetween: 50
+      }
+    }"
+    class="mySwiper">
+  <ng-template *ngFor="let partner of partners" swiperSlide>
+    <img [src]="partner.brandLogo" alt="logo" class="brand-logo" height="90"/>
+  </ng-template>
+</swiper>

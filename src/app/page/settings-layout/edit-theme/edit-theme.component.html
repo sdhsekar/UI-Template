@@ -1,0 +1,45 @@
+<div class="edit-theme-page">
+  <app-card1 [title]="'Theme Settings'">
+    <div body>
+      <div class="section-header">
+        <p class="dim">Dark/Light Mode</p>
+        <hr/>
+      </div>
+      <div class="section horizontal">
+        <app-button1 [text]="'Light theme'" (click)="setDarkLightSetting(DarkLightSettings.light)"
+                     [icon]="'sun'"
+                     [alwaysDark]="true"
+                     [isSleekButton]="true"
+                     [selected]="darkLightSetting === DarkLightSettings.light">
+        </app-button1>
+        <app-button1 [text]="'Dark theme'" (click)="setDarkLightSetting(DarkLightSettings.dark)"
+                     [icon]="'moon'"
+                     [alwaysLight]="true"
+                     [isSleekButton]="true"
+                     [selected]="darkLightSetting === DarkLightSettings.dark">
+        </app-button1>
+        <app-button1 [text]="'Auto'" (click)="setDarkLightSetting(DarkLightSettings.auto)"
+                     [icon]="'adjust'"
+                     [isSleekButton]="true"
+                     [selected]="darkLightSetting === DarkLightSettings.auto">
+        </app-button1>
+      </div>
+      <div class="section-header">
+        <p class="dim">Theme Color</p>
+        <hr/>
+      </div>
+      <div class="section horizontal">
+        <app-button1 *ngFor="let themeColor of themeColorSettingsList"
+                     (click)="setThemeColorSetting(themeColor)"
+                     [text]="themeColor + ' theme' | titlecase"
+                     [selected]="themeColorSetting === themeColor"
+                     [themeColor]="themeColor"
+                     [icon]="'tint'"
+                     [transparent]="true"
+                     [lighterContrast]="true"
+                     [isSleekButton]="true">
+        </app-button1>
+      </div>
+    </div>
+  </app-card1>
+</div>
