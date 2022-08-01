@@ -1,0 +1,98 @@
+<div class="form-page-layout">
+  <app-hero [contents]="[{text: 'Sitemap', level: 1}]"></app-hero>
+  <app-card [bodyTemplate]="bodyTemplate">
+    <ng-template #bodyTemplate>
+      <div class="body">
+        <div class="column">
+          <div class="title">
+            <p i18n>Products</p>
+          </div>
+          <div *ngFor="let productLine of PRODUCT_LINES" class="link-group">
+            <div class="title">
+              <p *ngIf="productLine.name"
+                 [class]="productLine.color ? productLine.color : ''">{{ productLine.name }}</p>
+            </div>
+            <a *ngFor="let product of productLine.products; last as isLast; first as isFirst"
+               [class]="productLine.color ? productLine.color : ''"
+               [routerLink]="URLS.product + '/' + productLine.key + '/' + product.key"
+               class="link-item">
+              {{ product.name }}
+            </a>
+          </div>
+        </div>
+        <div class="column">
+          <div class="link-inner-column">
+            <div *ngFor="let productLine of SERVICES" class="link-group">
+              <div class="title">
+                <p *ngIf="productLine.name"
+                   [class]="productLine.color ? productLine.color : ''">{{ productLine.name }}</p>
+              </div>
+              <a *ngFor="let product of productLine.products; last as isLast; first as isFirst"
+                 [class]="productLine.color ? productLine.color : ''"
+                 [routerLink]="URLS.product + '/' + productLine.key + '/' + product.key"
+                 class="link-item">
+                {{ product.name }}
+              </a>
+            </div>
+            <div class="link-group">
+              <div class="title">
+                <p i18n>Company</p>
+              </div>
+              <a [routerLink]="URLS.about" class="link-item" i18n>
+                About
+              </a>
+              <a [routerLink]="URLS.customers" class="link-item" i18n>
+                Customers
+              </a>
+              <a [routerLink]="URLS.partners" class="link-item" i18n>
+                Partners
+              </a>
+              <a [routerLink]="URLS.branding" class="link-item" i18n>
+                Branding
+              </a>
+              <a [routerLink]="URLS.blog" class="link-item" i18n>
+                Blog
+              </a>
+            </div>
+          </div>
+          <div class="link-inner-column">
+            <div class="link-group">
+              <div class="title">
+                <p i18n>Developers</p>
+              </div>
+              <a [routerLink]="URLS.docs" class="link-item" i18n>
+                Docs
+              </a>
+              <a [routerLink]="URLS.maintenance" class="link-item" i18n>
+                API
+              </a>
+              <a [routerLink]="URLS.status" class="link-item" i18n>
+                Status
+              </a>
+            </div>
+            <div class="link-group">
+              <div class="title">
+                <p i18n>Resources</p>
+              </div>
+              <a [routerLink]="URLS.contactUs" class="link-item" i18n>
+                Support
+              </a>
+              <a [routerLink]="URLS.contactUs" class="link-item" i18n>
+                Contact
+              </a>
+              <a [routerLink]="URLS.terms" class="link-item" i18n>
+                Terms & Conditions
+              </a>
+              <a [routerLink]="URLS.privacyPolicy" class="link-item" i18n>
+                Privacy
+              </a>
+              <a [routerLink]="URLS.cookiePolicy" class="link-item" i18n>
+                Cookies
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </app-card>
+</div>

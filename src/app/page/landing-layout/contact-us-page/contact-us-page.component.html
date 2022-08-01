@@ -1,0 +1,138 @@
+<!-- Contact Us -->
+<app-hero [contents]="[{text: 'Contact Us', level: 1}]"></app-hero>
+<div class="contact-us-page-content">
+  <app-card [bodyTemplate]="bodyTemplate">
+    <ng-template #bodyTemplate>
+      <div class="body">
+        <div *ngIf="emailSent">
+          <label i18n>Thank you for reaching us. Our team will contact with you soon.</label>
+        </div>
+        <form (ngSubmit)="onSubmit()" *ngIf="!emailSent" [formGroup]="form">
+          <div
+              [class.error-input]="submitted && form.controls.firstName.invalid"
+              class="input-with-label">
+            <input
+                formControlName="firstName"
+                placeholder="Jane"
+                required
+                type="text"
+            />
+            <h4 i18n>First Name</h4>
+          </div>
+          <div
+              [class.error-input]="submitted && form.controls.secondName.invalid"
+              class="input-with-label">
+            <input
+                formControlName="secondName"
+                placeholder="Doe"
+                required
+                type="text"/>
+            <h4 i18n>Last Name</h4>
+          </div>
+          <div
+              [class.error-input]="submitted && form.controls.workEmail.invalid"
+              class="input-with-label">
+            <input
+                formControlName="workEmail"
+                placeholder="jane.doe@example.com"
+                required
+                type="text"
+            />
+            <h4 i18n>Email</h4>
+          </div>
+          <div
+              [class.error-input]="submitted && form.controls.workPhone.invalid"
+              class="input-with-label">
+            <input
+                formControlName="workPhone"
+                placeholder="+5 (555) 555-5555"
+                type="text"
+            />
+            <h4 i18n>Phone Number</h4>
+          </div>
+          <div
+              [class.error-input]="submitted && form.controls.companyWebsite.invalid"
+              class="input-with-label">
+            <input
+                formControlName="companyWebsite"
+                placeholder="example.com"
+                type="text"
+            />
+            <h4 i18n>Website</h4>
+          </div>
+          <div [class.error-input]="submitted && form.controls.companySize.invalid" class="input-with-label">
+            <select (change)="changeCompanySize($event)" formControlName="companySize">
+              <option class="default-option" disabled i18n value="">
+                Select range of employees
+              </option>
+              <option *ngFor="let option of sizeOptions" [ngValue]="option">
+                {{ option }}
+              </option>
+            </select>
+            <h4 i18n>Company Size</h4>
+          </div>
+          <div [class.error-input]="submitted && form.controls.country.invalid" class="input-with-label">
+            <select (change)="changeCountry($event)" formControlName="country">
+              <option class="default-option" disabled i18n value="">
+                Select a country
+              </option>
+              <option *ngFor="let country of countries" [ngValue]="country">
+                {{ country }}
+              </option>
+            </select>
+            <h4>Country</h4>
+          </div>
+          <div
+              [class.error-input]="submitted && form.controls.anythingElse.invalid"
+              class="input-with-label"
+          >
+          <textarea
+              formControlName="anythingElse"
+              i18n-placeholder
+              maxlength="500" placeholder="Tell us more about your project, needs, and timeline...."
+              rows="5"
+          ></textarea>
+            <h4>Your Message</h4>
+          </div>
+          <div class="button-area">
+            <app-button [icon]="'envelope'" [text]="'CONTACT US'">
+            </app-button>
+          </div>
+        </form>
+      </div>
+    </ng-template>
+  </app-card>
+  <div *ngIf="features" class="features-area">
+    <h3 class="header">{{ features.title }}</h3>
+    <div *ngFor="let feature of features.features">
+      <i aria-hidden="true" class="material-icons">check</i>
+      <h4>{{ feature }}</h4>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="footer-card-wrapper">
+    <i aria-hidden="true" class="fa fa-comments fa-fw"></i>
+    <div class="footer-card-right-column">
+      <h4 i18n>General Communication</h4>
+      <h4>
+        <ng-container i18n>For general queries, including partnership opportunities, please email</ng-container>
+        <a [href]="'mailto: ' + environmentCommon.oth.email" class="theme-color-link">
+          {{ environmentCommon.oth.email }}
+        </a>
+      </h4>
+    </div>
+  </div>
+  <div class="footer-card-wrapper">
+    <i aria-hidden="true" class="fa fa-life-ring fa-fw"></i>
+    <div class="footer-card-right-column">
+      <h4 i18n>Technical or account support</h4>
+      <h4>
+        <ng-container i18n>We're here to help! If you have any technical issues,</ng-container>
+        <a [routerLink]="URLS.contactUs" class="theme-color-link" i18n>
+          contact support
+        </a>
+      </h4>
+    </div>
+  </div>
+</div>

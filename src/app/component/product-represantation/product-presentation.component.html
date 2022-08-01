@@ -1,0 +1,70 @@
+<ng-container *ngIf="product">
+  <div class="product-presentation">
+    <ng-container [ngSwitch]="productLineKey">
+      <ng-container *ngSwitchCase="['server', 'premium'].includes(productLineKey) ? productLineKey : ''">
+        <app-card [bodyTemplate]="bodyTemplate" [cardClass]="'transparent-card'" [footerTemplate]="footerTemplate"
+                  class="presentation-card">
+          <ng-template #bodyTemplate>
+            <div class="body">
+              <div class="social-login-wrapper">
+                <img [src]="product.logo" alt="logo" class="brand-logo" width="90"/>
+                <i aria-hidden="true" class="fa fa-check-circle"></i>
+                <app-presentation-swiper [items]="setPresentation()"
+                                         [height]="product.key === 'orchestration-server-template' ? 90 : 75">
+                </app-presentation-swiper>
+              </div>
+              <p class="feature-title">{{ presentationText }}</p>
+            </div>
+          </ng-template>
+          <ng-template #footerTemplate>
+            <div class="footer theme-color-lighter-3-border">
+              <p>Some of the preconfigured systems:</p>
+              <p>
+                <span *ngFor="let partner of presentationPartners; last as isLast">
+                  {{ partnerNameFormat( partner.name, isLast ) | titlecase }}
+                </span>
+              </p>
+              <small>*configuration still requires some level of developer experience</small>
+            </div>
+          </ng-template>
+        </app-card>
+      </ng-container>
+      <ng-container *ngSwitchCase="'user-interface'">
+        <app-card [bodyTemplate]="bodyTemplate" [cardClass]="'transparent-card'" class="tech-stack-card">
+          <ng-template #bodyTemplate>
+            <div class="body">
+              <p class="feature-title">Tech Stack</p>
+              <div class="social-login-wrapper">
+                <app-presentation-swiper [items]="product.techStack"></app-presentation-swiper>
+              </div>
+              <div class="details">
+                <span *ngFor="let tech of product.techStack; last as isLast">
+                  {{ tech.description + (isLast ? '' : ', ') }}
+                </span>
+              </div>
+            </div>
+          </ng-template>
+        </app-card>
+      </ng-container>
+      <ng-container *ngSwitchCase="'generator'">
+        <app-animated-code-editor [commandLines]="product.commandLines"></app-animated-code-editor>
+      </ng-container>
+      <ng-container *ngSwitchDefault [ngSwitch]="product.key">
+        <app-card [bodyTemplate]="bodyTemplate" [cardClass]="'transparent-card'" class="features-card">
+          <ng-template #bodyTemplate>
+            <div class="body">
+              <ng-container *ngFor="let feature of product.features">
+                <p class="feature-title">{{ feature.name }}</p>
+
+                <div *ngFor="let detail of feature.details" class="details">
+                  <p>{{ detail.name + ':' }}</p>
+                  <p>{{ detail.description}}</p>
+                </div>
+              </ng-container>
+            </div>
+          </ng-template>
+        </app-card>
+      </ng-container>
+    </ng-container>
+  </div>
+</ng-container>
