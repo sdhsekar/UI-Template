@@ -1,0 +1,30 @@
+@use '../settings-layout.component';
+
+.section.horizontal {
+  width: 100%;
+}
+
+@media only screen and (min-width: 1000px) {
+  .section.horizontal {
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    & > * {
+      margin: 10px;
+    }
+  }
+
+  .section.horizontal app-brand-button {
+    padding-right: 15px;
+  }
+}
+
+@media only screen and (max-width: 999px) {
+  .section.horizontal {
+
+    & > * {
+      margin: 10px 0;
+    }
+  }
+}
